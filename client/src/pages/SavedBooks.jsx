@@ -18,7 +18,7 @@ const SavedBooks = () => {
   const { loading, data } = useQuery(GET_ME);
   const [removeBook, { error }] = useMutation(REMOVE_BOOK);
 
-  const userData = data?.me || [];
+  const userData = data?.me || {};
 
   
 
@@ -30,9 +30,13 @@ const SavedBooks = () => {
       return false;
     }
     try {
-      await removeBook({
+      const { data } = await removeBook({
         variables: { bookId }
       });
+      if (error) {
+        throw new Error('something went wrong!');
+      }
+      
       // upon success, remove book's id from localStorage
       removeBookId(bookId);
     } catch (err) {
