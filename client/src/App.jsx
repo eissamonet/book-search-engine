@@ -1,5 +1,9 @@
-import './App.css';
-import { Outlet } from 'react-router-dom';
+
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+//import ApolloProvider and ApolloClient
+import { ApolloProvider } from '@apollo/react-hooks';
+import { ApolloClient } from '@apollo/client';
 
 import SearchBooks from './pages/SearchBooks';
 import SavedBooks from './pages/SavedBooks';
